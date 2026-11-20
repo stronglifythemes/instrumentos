@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="builder" content="Stronglify">
+<link rel="icon" type="image/x-icon" href="https://media.stronglify.com/295/favicon-instrumentos-1795205466.svg">
+<title>Blog - Instrumentos</title>
+<meta name="description" content="Notas sobre tambores, ritmo y percusión.">
+<meta name="robots" content="index">
+<link rel="canonical" href="https://instrumentos/blog.html"><style>
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
+fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}img{max-width:100%;height:auto}
+</style><style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#fff;color:#000}
+body{font-family:'Fredoka',system-ui,sans-serif;font-weight:500;overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:#000;text-decoration:none}
+:focus{outline:none}
+:focus-visible{outline:2px solid #000;outline-offset:4px;border-radius:12px}
+
+.ins-app{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;background:#fff}
+
+ 
+.ins-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px clamp(16px,3vw,40px)}
+.ins-brand{font-size:19px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.ins-nav{display:flex;gap:4px;flex-wrap:nowrap}
+.ins-nav a{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:10px 14px;border-radius:999px;transition:background .2s;white-space:nowrap}
+.ins-nav a:hover,.ins-nav a[aria-current="page"]{background:#f2f2f2}
+
+ 
+.ins-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,40px) 18px;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+
+ 
+.ins-studio{flex:1;min-height:0;display:grid;grid-template-columns:clamp(88px,8.5vw,124px) 1fr}
+.ins-rail{min-height:0;overflow-y:auto;scrollbar-width:none;padding:6px 0 10px clamp(12px,2vw,28px);display:flex;flex-direction:column;gap:14px;transition:background .2s}
+.ins-rail::-webkit-scrollbar{display:none}
+.ins-rail.is-drop .ins-prev{background:#e6e6e6}
+.ins-pick{appearance:none;border:0;background:none;margin:0;padding:0;font:inherit;color:#000;cursor:grab;display:flex;flex-direction:column;align-items:center;gap:8px;touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;flex:none}
+.ins-prev{width:100%;aspect-ratio:1;border-radius:20px;background:#f4f4f4;display:grid;place-items:center;transition:background .2s,transform .15s}
+.ins-prev svg{width:68%;height:68%;display:block;pointer-events:none}
+.ins-pick:hover .ins-prev{background:#ededed}
+.ins-pick:active{cursor:grabbing}
+.ins-pick.hit .ins-prev{animation:insHit .22s ease-out}
+.ins-name{font-size:11px;font-weight:600;line-height:1.3;letter-spacing:.03em;text-transform:uppercase;text-align:center}
+
+.ins-stage{position:relative;min-width:0;min-height:0;overflow:hidden;touch-action:none;background:#fff}
+.ins-placed{position:absolute;width:var(--s,120px);height:var(--s,120px);transform:translate(-50%,-50%);cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;z-index:1}
+.ins-placed svg{position:relative;width:100%;height:100%;display:block;pointer-events:none;z-index:1;transition:transform .12s}
+.ins-placed.hit svg{animation:insHit .22s ease-out}
+.ins-placed.is-drag{cursor:grabbing;z-index:20}
+.ins-placed.is-drag svg{transform:scale(1.06)}
+.ins-placed.is-out{transition:opacity .2s,transform .2s;opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.ins-placed.is-in{animation:insIn .28s ease-out}
+.ins-wave{position:absolute;left:50%;top:50%;width:100%;height:100%;margin:-50% 0 0 -50%;border-radius:50%;background:#000;opacity:0;pointer-events:none;z-index:0;animation:insWave .6s ease-out forwards}
+.ins-ghost{position:fixed;left:0;top:0;pointer-events:none;z-index:100;transform:translate(-50%,-50%);opacity:.9}
+.ins-ghost svg{width:100%;height:100%;display:block}
+ 
+.ins-o{display:inline-block;transform-origin:50% 85%}
+.ins-o.hit{animation:insO .26s ease-out}
+@keyframes insO{0%{transform:scale(1.15,.72)}55%{transform:scale(.94,1.12)}100%{transform:scale(1)}}
+ 
+.ins-del{position:absolute;top:0;right:0;width:30px;height:30px;margin:0;padding:0;border:0;border-radius:50%;background:#000;display:grid;place-items:center;cursor:pointer;z-index:3;opacity:0;transform:scale(.5);pointer-events:none;transition:opacity .15s,transform .15s}
+.ins-del svg{width:16px;height:16px;display:block}
+.ins-placed:hover .ins-del,.ins-placed.is-sel .ins-del,.ins-placed:focus-visible .ins-del{opacity:1;transform:scale(1);pointer-events:auto}
+.ins-placed.is-drag .ins-del{opacity:0;pointer-events:none}
+.ins-clear{position:absolute;right:clamp(12px,2vw,28px);bottom:clamp(10px,2vh,20px);width:46px;height:46px;margin:0;padding:0;border:0;border-radius:50%;background:#000;display:grid;place-items:center;cursor:pointer;z-index:30;opacity:0;transform:scale(.6);pointer-events:none;transition:opacity .2s,transform .2s}
+.ins-clear svg{width:20px;height:20px;display:block}
+.ins-clear.is-on{opacity:1;transform:scale(1);pointer-events:auto}
+.ins-clear:hover{transform:scale(1.08)}
+@keyframes insHit{0%{transform:scale(.88)}55%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes insWave{0%{opacity:.09;transform:scale(.5)}100%{opacity:0;transform:scale(1.7)}}
+@keyframes insIn{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
+ 
+.ins-page{flex:1;min-height:0;display:flex;flex-direction:column;gap:clamp(14px,2.4vh,28px);padding:clamp(8px,2vh,24px) clamp(16px,3vw,40px)}
+.ins-title{margin:0;font-weight:700;font-size:clamp(30px,4.6vw,64px);line-height:1.05;letter-spacing:0}
+.ins-scroll{min-height:0;overflow-y:auto;scrollbar-width:none}
+.ins-scroll::-webkit-scrollbar{display:none}
+
+.ins-grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:clamp(12px,1.6vw,24px)}
+.ins-card{display:flex;flex-direction:column;gap:12px;min-height:0;border-radius:22px;transition:transform .2s}
+.ins-card:hover{transform:translateY(-3px)}
+.ins-card-img{flex:1;min-height:80px;border-radius:22px;background:#f4f4f4 center/cover no-repeat}
+.ins-card h2{margin:0;font-weight:600;font-size:clamp(15px,1.3vw,19px);line-height:1.3}
+.ins-card p{margin:0;font-weight:400;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.ins-contact{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,64px);align-items:center}
+.ins-contact-info{display:flex;flex-direction:column;gap:clamp(16px,3vh,32px)}
+.ins-contact-info p{margin:0;font-weight:400;font-size:17px;line-height:1.6;max-width:42ch}
+.ins-contact-data{display:flex;flex-direction:column;gap:10px;font-size:16px;font-weight:600}
+.ins-form{display:flex;flex-direction:column;gap:12px}
+.ins-form input,.ins-form textarea{width:100%;border:0;border-radius:16px;background:#f4f4f4;padding:16px 18px;font:500 15px/1.5 'Fredoka',system-ui,sans-serif;color:#000;resize:none}
+.ins-form textarea{height:clamp(90px,20vh,180px)}
+.ins-form input::placeholder,.ins-form textarea::placeholder{color:#000;opacity:.45}
+.ins-form input:focus,.ins-form textarea:focus{background:#ececec}
+.ins-form button{align-self:flex-start;border:0;border-radius:999px;background:#000;color:#fff;padding:15px 28px;font:600 14px 'Fredoka',system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:transform .15s}
+.ins-form button:hover{transform:translateY(-2px)}
+
+.ins-article{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,4vw,64px)}
+.ins-article-img{min-height:0;border-radius:26px;background:#f4f4f4 center/cover no-repeat}
+.ins-article-text{min-height:0;display:flex;flex-direction:column;gap:clamp(14px,2.4vh,26px)}
+.ins-article-body{flex:1;min-height:0;font-weight:400;font-size:17px;line-height:1.7;max-width:62ch}
+.ins-article-body h2,.ins-article-body h3{font-weight:700;line-height:1.2}
+.ins-article-body a{text-decoration:none;background:#f2f2f2;padding:0 4px;border-radius:4px}
+.ins-article-body img{max-width:100%;border-radius:16px}
+.ins-article-body hr{display:none}
+
+@media (max-width:820px){
+  .ins-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .ins-head{padding:14px 12px;gap:8px}
+  .ins-brand{font-size:15px}
+  .ins-nav a{font-size:12px;padding:8px 9px}
+  .ins-studio{grid-template-columns:84px 1fr}
+  .ins-rail{padding-left:10px;gap:10px}
+  .ins-prev{border-radius:14px}
+  .ins-name{font-size:9.5px;letter-spacing:0}
+  .ins-foot{padding:10px 12px 12px;font-size:10px}
+  .ins-page{padding:6px 12px}
+  .ins-grid{grid-template-columns:minmax(0,1fr);overflow-y:auto;grid-auto-rows:minmax(180px,auto)}
+  .ins-contact{grid-template-columns:1fr;align-content:start;overflow-y:auto}
+  .ins-article{grid-template-columns:1fr;grid-template-rows:28vh minmax(0,1fr)}
+}
+@media (max-width:480px){
+  .ins-brand{display:none}
+  .ins-nav{flex:1;justify-content:space-between}
+}
+</style><style>
+.ins-card p{min-height:3em}
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff"></head>
+<body>
+  <div class="ins-app">
+  <header class="ins-head">
+  <a class="ins-brand" href="/">OOOOOOOOOOOOOOOOOOOOOOOOO</a>
+  <nav class="ins-nav" aria-label="Principal">
+    <a href="/">Inicio</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/article.html">Article</a>
+  </nav>
+</header>
+  <main class="ins-page">
+    <h1 class="ins-title">Blog</h1>
+    <div class="ins-grid">
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>El pulso de la percusión</h2>
+        <p>Por qué los tambores son la familia de instrumentos más antigua del mundo.</p>
+      </a>
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>Bombo y redoblante</h2>
+        <p>La base de casi todos los ritmos: cómo conversan el golpe grave y el seco.</p>
+      </a>
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>Congas y bongós</h2>
+        <p>Parches tocados con las manos y el sabor del Caribe.</p>
+      </a>
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>El cajón</h2>
+        <p>Una caja de madera que se volvió batería portátil.</p>
+      </a>
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>Platillos y hi-hat</h2>
+        <p>El brillo metálico que marca el tiempo y abre los cortes.</p>
+      </a>
+      
+      <a class="ins-card" href="/article.html">
+        <span class="ins-card-img" style="background-image:url('')"></span>
+        <h2>Djembé</h2>
+        <p>El tambor de copa de África occidental y sus tres sonidos.</p>
+      </a>
+      
+    </div>
+  </main>
+  <footer class="ins-foot">
+  <span>© 2026 Instrumentos</span>
+</footer>
+</div><script>
+(function () {
+  'use strict';
+
+   
+  var path = location.pathname.replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+  Array.prototype.forEach.call(document.querySelectorAll('.ins-nav a'), function (a) {
+    var p = (a.pathname || '').replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+    if (a.host === location.host && p === path) a.setAttribute('aria-current', 'page');
+  });
+
+   
+  var ctx = null, master = null, noiseBuf = null;
+  function ac() {
+    if (!ctx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+      master = ctx.createDynamicsCompressor();
+      master.threshold.value = -10;
+      master.ratio.value = 4;
+      var vol = ctx.createGain();
+      vol.gain.value = 0.9;
+      master.connect(vol);
+      vol.connect(ctx.destination);
+    }
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  function env(c, t, peak, dur) {
+    var g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + 0.003);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    return g;
+  }
+  function tone(c, t, type, f0, f1, dur, peak) {
+    var o = c.createOscillator();
+    o.type = type;
+    o.frequency.setValueAtTime(f0, t);
+    o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+    var g = env(c, t, peak, dur);
+    o.connect(g); g.connect(master);
+    o.start(t); o.stop(t + dur + 0.05);
+  }
+  function hiss(c, t, ftype, freq, q, dur, peak) {
+    if (!noiseBuf) {
+      noiseBuf = c.createBuffer(1, c.sampleRate * 2, c.sampleRate);
+      var d = noiseBuf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    var n = c.createBufferSource();
+    n.buffer = noiseBuf;
+    var f = c.createBiquadFilter();
+    f.type = ftype; f.frequency.value = freq; f.Q.value = q;
+    var g = env(c, t, peak, dur);
+    n.connect(f); f.connect(g); g.connect(master);
+    n.start(t, Math.random()); n.stop(t + dur + 0.05);
+  }
+  function bell(c, t) {
+    var f = c.createBiquadFilter();
+    f.type = 'bandpass'; f.frequency.value = 900; f.Q.value = 2.5;
+    var g = env(c, t, 0.55, 0.4);
+    f.connect(g); g.connect(master);
+    [587, 845].forEach(function (hz) {
+      var o = c.createOscillator();
+      o.type = 'square'; o.frequency.value = hz;
+      o.connect(f); o.start(t); o.stop(t + 0.45);
+    });
+  }
+  var SOUND = {
+    bombo: function (c, t) { tone(c, t, 'sine', 160, 42, 0.55, 1); hiss(c, t, 'lowpass', 1800, 0.7, 0.025, 0.35); },
+    redoblante: function (c, t) { tone(c, t, 'triangle', 230, 160, 0.12, 0.55); hiss(c, t, 'highpass', 1800, 0.7, 0.22, 0.6); },
+    tom: function (c, t) { tone(c, t, 'sine', 200, 105, 0.45, 0.9); hiss(c, t, 'lowpass', 2500, 0.7, 0.03, 0.2); },
+    timbal: function (c, t) { tone(c, t, 'triangle', 420, 330, 0.35, 0.55); tone(c, t, 'sine', 640, 600, 0.25, 0.25); hiss(c, t, 'bandpass', 3500, 1, 0.08, 0.3); },
+    platillo: function (c, t) { hiss(c, t, 'highpass', 5000, 0.6, 1.8, 0.4); hiss(c, t, 'bandpass', 9000, 1, 1.1, 0.22); },
+    hihat: function (c, t) { hiss(c, t, 'highpass', 7500, 0.7, 0.075, 0.5); },
+    conga: function (c, t) { tone(c, t, 'sine', 330, 240, 0.32, 0.85); hiss(c, t, 'bandpass', 2500, 1, 0.03, 0.25); },
+    bongo: function (c, t) { tone(c, t, 'sine', 520, 430, 0.18, 0.75); hiss(c, t, 'bandpass', 4000, 1, 0.02, 0.2); },
+    cajon: function (c, t) { tone(c, t, 'sine', 120, 55, 0.25, 0.9); hiss(c, t, 'lowpass', 1200, 0.7, 0.12, 0.45); hiss(c, t, 'bandpass', 3200, 1, 0.1, 0.18); },
+    djembe: function (c, t) { tone(c, t, 'sine', 190, 92, 0.4, 0.9); hiss(c, t, 'bandpass', 1500, 1.5, 0.05, 0.3); },
+    pandereta: function (c, t) { for (var i = 0; i < 4; i++) hiss(c, t + i * 0.035, 'bandpass', 8500, 2, 0.14, 0.4 - i * 0.07); tone(c, t, 'sine', 260, 200, 0.06, 0.2); },
+    cencerro: function (c, t) { bell(c, t); }
+  };
+  function play(kind) {
+    var c = ac();
+    if (!c) return;
+    (SOUND[kind] || SOUND.tom)(c, c.currentTime + 0.005);
+  }
+  function drumO(c, t) {
+    var f = 150 + Math.random() * 130;
+    tone(c, t, 'sine', f, f * 0.52, 0.32, 0.75);
+    hiss(c, t, 'bandpass', 1800 + Math.random() * 1200, 1.2, 0.035, 0.22);
+  }
+  function hit(el) {
+    el.classList.remove('hit');
+    void el.offsetWidth;
+    el.classList.add('hit');
+  }
+
+   
+  var O_RE = /([oOóÓòÒöÖ])/;
+  function wrapOs(root) {
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentNode;
+        if (!p || !O_RE.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        if (p.closest('script,style,textarea,select,option,svg,.ins-rail,.ins-stage,.ins-o')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var list = [];
+    while (w.nextNode()) list.push(w.currentNode);
+    list.forEach(function (n) {
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(O_RE).forEach(function (s, i) {
+        if (!s) return;
+        if (i % 2) {
+          var sp = document.createElement('span');
+          sp.className = 'ins-o';
+          sp.textContent = s;
+          frag.appendChild(sp);
+        } else {
+          frag.appendChild(document.createTextNode(s));
+        }
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function hitO(o) {
+    var c = ac();
+    if (c) drumO(c, c.currentTime + 0.005);
+    hit(o);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.ins-head, .ins-foot, .ins-page'), wrapOs);
+  document.addEventListener('pointerdown', function (e) {
+    if (!ctx) ac();
+    var o = e.target.closest && e.target.closest('.ins-o');
+    if (o) hitO(o);
+  }, true);
+  document.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var o = e.target.closest && e.target.closest('.ins-o');
+    if (o && ctx && ctx.state === 'running') hitO(o);
+  });
+
+  var studio = document.querySelector('.ins-studio');
+  if (!studio) return;
+  var rail = studio.querySelector('.ins-rail');
+  var stage = studio.querySelector('.ins-stage');
+  if (!rail || !stage) return;
+
+   
+  var K = '#111', H = '#e9e9e9', W = '#fff';
+  function drumSide(x, y, w, h, ry) {
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + K + '"/>' +
+      '<ellipse cx="' + (x + w / 2) + '" cy="' + (y + h) + '" rx="' + (w / 2) + '" ry="' + ry + '" fill="' + K + '"/>' +
+      '<ellipse cx="' + (x + w / 2) + '" cy="' + y + '" rx="' + (w / 2) + '" ry="' + ry + '" fill="' + H + '"/>';
+  }
+  var SVG = {
+    bombo: '<circle cx="50" cy="50" r="46" fill="' + K + '"/><circle cx="50" cy="50" r="37" fill="' + H + '"/><circle cx="50" cy="50" r="10" fill="' + K + '"/>' +
+      '<circle cx="50" cy="8" r="3" fill="' + W + '"/><circle cx="50" cy="92" r="3" fill="' + W + '"/><circle cx="8" cy="50" r="3" fill="' + W + '"/><circle cx="92" cy="50" r="3" fill="' + W + '"/>',
+    redoblante: drumSide(12, 40, 76, 26, 11) + '<rect x="22" y="47" width="4" height="13" rx="2" fill="' + W + '"/><rect x="48" y="49" width="4" height="13" rx="2" fill="' + W + '"/><rect x="74" y="47" width="4" height="13" rx="2" fill="' + W + '"/>',
+    tom: drumSide(20, 28, 60, 44, 11) + '<rect x="30" y="40" width="4" height="22" rx="2" fill="' + W + '"/><rect x="66" y="40" width="4" height="22" rx="2" fill="' + W + '"/>',
+    platillo: '<rect x="48.5" y="50" width="3" height="40" fill="' + K + '"/><path d="M38 92 L50 82 L62 92 Z" fill="' + K + '"/>' +
+      '<ellipse cx="50" cy="48" rx="46" ry="8" fill="' + K + '"/><ellipse cx="50" cy="42" rx="10" ry="6" fill="' + K + '"/><ellipse cx="50" cy="38" rx="2.5" ry="2" fill="' + W + '"/>',
+    hihat: '<rect x="48.5" y="30" width="3" height="60" fill="' + K + '"/><path d="M38 92 L50 82 L62 92 Z" fill="' + K + '"/>' +
+      '<ellipse cx="50" cy="30" rx="36" ry="6" fill="' + K + '"/><ellipse cx="50" cy="25" rx="8" ry="5" fill="' + K + '"/>' +
+      '<ellipse cx="50" cy="40" rx="36" ry="6" fill="' + K + '"/><ellipse cx="50" cy="45" rx="8" ry="4" fill="' + K + '"/>',
+    conga: '<path d="M30 18 Q19 55 34 92 L66 92 Q81 55 70 18 Z" fill="' + K + '"/><ellipse cx="50" cy="18" rx="20" ry="6" fill="' + H + '"/>' +
+      '<rect x="27" y="40" width="46" height="4" rx="2" fill="' + W + '"/><rect x="28" y="70" width="44" height="4" rx="2" fill="' + W + '"/>',
+    bongo: drumSide(10, 40, 34, 34, 7) + drumSide(52, 34, 40, 40, 8) + '<rect x="42" y="52" width="12" height="9" fill="' + K + '"/>',
+    cajon: '<rect x="24" y="12" width="52" height="80" rx="5" fill="' + K + '"/><rect x="30" y="18" width="40" height="68" rx="3" fill="' + H + '"/><circle cx="50" cy="38" r="9" fill="' + K + '"/>',
+    djembe: '<path d="M20 22 Q20 58 42 64 L37 92 L63 92 L58 64 Q80 58 80 22 Z" fill="' + K + '"/><ellipse cx="50" cy="22" rx="30" ry="7" fill="' + H + '"/>' +
+      '<path d="M30 34 L42 62 M70 34 L58 62" stroke="' + W + '" stroke-width="3" stroke-linecap="round"/>',
+    pandereta: '<circle cx="50" cy="50" r="42" fill="' + K + '"/><circle cx="50" cy="50" r="31" fill="' + H + '"/>' +
+      '<rect x="44" y="4" width="12" height="7" rx="3.5" fill="' + W + '"/><rect x="44" y="89" width="12" height="7" rx="3.5" fill="' + W + '"/>' +
+      '<rect x="4" y="44" width="7" height="12" rx="3.5" fill="' + W + '"/><rect x="89" y="44" width="7" height="12" rx="3.5" fill="' + W + '"/>' +
+      '<rect x="15" y="15" width="9" height="9" rx="4.5" fill="' + W + '"/><rect x="76" y="15" width="9" height="9" rx="4.5" fill="' + W + '"/><rect x="15" y="76" width="9" height="9" rx="4.5" fill="' + W + '"/><rect x="76" y="76" width="9" height="9" rx="4.5" fill="' + W + '"/>',
+    cencerro: '<rect x="42" y="6" width="16" height="14" rx="3" fill="' + K + '"/><path d="M34 18 L66 18 L80 86 L20 86 Z" fill="' + K + '"/><path d="M42 26 L50 26 L46 78 L30 78 Z" fill="#2a2a2a"/>',
+    timbal: drumSide(14, 34, 72, 30, 10) + '<rect x="48.5" y="66" width="3" height="22" fill="' + K + '"/><path d="M36 92 L50 84 L64 92 Z" fill="' + K + '"/>'
+  };
+  var SIZE = { bombo: 1.5, redoblante: 1.05, tom: 1, platillo: 1.35, hihat: 1.1, conga: 1.2, bongo: 1.05, cajon: 1.15, djembe: 1.2, pandereta: 0.9, cencerro: 0.75, timbal: 1.05 };
+  var DEFAULTS = [
+    ['Bombo', 'bombo'], ['Redoblante', 'redoblante'], ['Tom', 'tom'], ['Platillo', 'platillo'], ['Hi-hat', 'hihat'],
+    ['Conga', 'conga'], ['Bongó', 'bongo'], ['Cajón', 'cajon'], ['Djembé', 'djembe'], ['Timbal', 'timbal'],
+    ['Pandereta', 'pandereta'], ['Cencerro', 'cencerro']
+  ];
+  function norm(k) {
+    k = String(k || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z]/g, '');
+    if (k === 'hihat' || k === 'charles') return 'hihat';
+    if (k === 'caja' || k === 'snare') return 'redoblante';
+    if (k === 'kick' || k === 'bass') return 'bombo';
+    return SVG[k] ? k : 'tom';
+  }
+  function svg(kind) {
+    return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' + SVG[kind] + '</svg>';
+  }
+
+   
+  if (!rail.querySelector('.ins-pick')) {
+    DEFAULTS.forEach(function (d) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ins-pick';
+      b.setAttribute('data-kind', d[1]);
+      b.innerHTML = '<span class="ins-prev"></span><span class="ins-name"></span>';
+      b.querySelector('.ins-name').textContent = d[0];
+      rail.appendChild(b);
+    });
+  }
+  var NAMES = {};
+  Array.prototype.forEach.call(rail.querySelectorAll('.ins-pick'), function (b) {
+    var kind = norm(b.getAttribute('data-kind'));
+    b.setAttribute('data-kind', kind);
+    var nm = b.querySelector('.ins-name');
+    NAMES[kind] = nm ? nm.textContent.trim() : kind;
+    b.setAttribute('aria-label', NAMES[kind]);
+    var prev = b.querySelector('.ins-prev');
+    if (prev) prev.innerHTML = svg(kind);
+  });
+
+   
+  var KEY = 'instrumentos-kit:' + location.pathname;
+  function baseSize() {
+    var r = stage.getBoundingClientRect();
+    return Math.max(70, Math.min(r.width, r.height) * 0.22);
+  }
+  function sizeAll() {
+    var b = baseSize();
+    Array.prototype.forEach.call(stage.querySelectorAll('.ins-placed'), function (el) {
+      el.style.setProperty('--s', Math.round(b * (SIZE[el.dataset.kind] || 1)) + 'px');
+    });
+  }
+  function save() {
+    var list = Array.prototype.map.call(stage.querySelectorAll('.ins-placed'), function (el) {
+      return [el.dataset.kind, +(+el.dataset.x).toFixed(4), +(+el.dataset.y).toFixed(4)];
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function setPos(el, x, y) {
+    x = Math.min(0.97, Math.max(0.03, x));
+    y = Math.min(0.97, Math.max(0.03, y));
+    el.dataset.x = x; el.dataset.y = y;
+    el.style.left = (x * 100) + '%';
+    el.style.top = (y * 100) + '%';
+  }
+  function place(kind, x, y, animate) {
+    var el = document.createElement('div');
+    el.className = 'ins-placed' + (animate ? ' is-in' : '');
+    el.dataset.kind = kind;
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', NAMES[kind] || kind);
+    el.innerHTML = svg(kind) + '<button type="button" class="ins-del" aria-label="Quitar"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M6.3 4.9 12 10.6l5.7-5.7 1.4 1.4-5.7 5.7 5.7 5.7-1.4 1.4-5.7-5.7-5.7 5.7-1.4-1.4 5.7-5.7-5.7-5.7z"/></svg></button>';
+    setPos(el, x, y);
+    el.style.setProperty('--s', Math.round(baseSize() * (SIZE[kind] || 1)) + 'px');
+    stage.appendChild(el);
+    syncClear();
+    if (animate) setTimeout(function () { el.classList.remove('is-in'); }, 320);
+    return el;
+  }
+  function strike(el) {
+    play(el.dataset.kind);
+    hit(el);
+    var w = document.createElement('span');
+    w.className = 'ins-wave';
+    el.appendChild(w);
+    setTimeout(function () { w.remove(); }, 650);
+  }
+  function removeEl(el) {
+    if (el.classList.contains('is-out')) return;
+    el.classList.add('is-out');
+    setTimeout(function () { el.remove(); save(); syncClear(); }, 220);
+  }
+  function select(el) {
+    Array.prototype.forEach.call(stage.querySelectorAll('.ins-placed.is-sel'), function (s) { if (s !== el) s.classList.remove('is-sel'); });
+    if (el) el.classList.add('is-sel');
+  }
+   
+  var clearBtn = document.createElement('button');
+  clearBtn.type = 'button';
+  clearBtn.className = 'ins-clear';
+  clearBtn.setAttribute('aria-label', 'Quitar todos');
+  clearBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M9 3h6l1 2h4v2H4V5h4l1-2zM6 9h12l-1 12H7L6 9z"/></svg>';
+  stage.appendChild(clearBtn);
+  function syncClear() {
+    clearBtn.classList.toggle('is-on', !!stage.querySelector('.ins-placed:not(.is-out)'));
+  }
+  clearBtn.addEventListener('click', function () {
+    Array.prototype.forEach.call(stage.querySelectorAll('.ins-placed'), removeEl);
+    clearBtn.classList.remove('is-on');
+  });
+  function inside(rect, x, y) {
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+  }
+
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+  var kinds = Array.prototype.map.call(rail.querySelectorAll('.ins-pick'), function (b) { return b.dataset.kind; });
+  var start = Array.isArray(saved) ? saved : [
+    ['hihat', 0.2, 0.42], ['platillo', 0.78, 0.3], ['tom', 0.42, 0.32], ['redoblante', 0.32, 0.64],
+    ['bombo', 0.54, 0.62], ['conga', 0.84, 0.68]
+  ].filter(function (it) { return kinds.indexOf(it[0]) > -1; });
+  start.forEach(function (it) { if (SVG[it[0]]) place(it[0], it[1], it[2], false); });
+
+   
+  var drag = null;
+  rail.addEventListener('pointerdown', function (e) {
+    var b = e.target.closest('.ins-pick');
+    if (!b || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    if (e.pointerType === 'mouse') e.preventDefault();
+    ac();
+    drag = { src: 'rail', btn: b, kind: b.dataset.kind, id: e.pointerId, x0: e.clientX, y0: e.clientY, moved: false, ghost: null };
+    try { b.setPointerCapture(e.pointerId); } catch (er) {}
+  });
+   
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.ins-clear')) return;
+    var del = e.target.closest('.ins-del');
+    if (del) { e.preventDefault(); e.stopPropagation(); removeEl(del.parentNode); return; }
+    var el = e.target.closest('.ins-placed');
+    if (!el) { select(null); return; }
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    select(el);
+    strike(el);
+    var r = el.getBoundingClientRect();
+    drag = { src: 'stage', el: el, id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: e.clientX - (r.left + r.width / 2), dy: e.clientY - (r.top + r.height / 2), moved: false };
+    try { el.setPointerCapture(e.pointerId); } catch (er) {}
+  });
+
+  document.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.moved && Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) < 7) return;
+    drag.moved = true;
+    if (drag.src === 'rail') {
+      if (!drag.ghost) {
+        var g = document.createElement('div');
+        g.className = 'ins-ghost';
+        var s = Math.round(baseSize() * (SIZE[drag.kind] || 1));
+        g.style.width = s + 'px'; g.style.height = s + 'px';
+        g.innerHTML = svg(drag.kind);
+        document.body.appendChild(g);
+        drag.ghost = g;
+      }
+      drag.ghost.style.left = e.clientX + 'px';
+      drag.ghost.style.top = e.clientY + 'px';
+    } else {
+      var sr = stage.getBoundingClientRect();
+      drag.el.classList.add('is-drag');
+      setPos(drag.el, (e.clientX - drag.dx - sr.left) / sr.width, (e.clientY - drag.dy - sr.top) / sr.height);
+      rail.classList.toggle('is-drop', inside(rail.getBoundingClientRect(), e.clientX, e.clientY));
+    }
+  });
+
+  function end(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag;
+    drag = null;
+    rail.classList.remove('is-drop');
+    if (d.src === 'rail') {
+      if (d.ghost) {
+        d.ghost.remove();
+        var sr = stage.getBoundingClientRect();
+        if (e.type === 'pointerup' && inside(sr, e.clientX, e.clientY)) {
+          var el = place(d.kind, (e.clientX - sr.left) / sr.width, (e.clientY - sr.top) / sr.height, true);
+          strike(el);
+          save();
+        }
+      } else if (e.type === 'pointerup') {
+        play(d.kind);
+        hit(d.btn);
+      }
+    } else {
+      d.el.classList.remove('is-drag');
+      if (d.moved) {
+        if (e.type === 'pointerup' && inside(rail.getBoundingClientRect(), e.clientX, e.clientY)) removeEl(d.el);
+        else save();
+      }
+    }
+  }
+  document.addEventListener('pointerup', end);
+  document.addEventListener('pointercancel', end);
+
+   
+  rail.addEventListener('keydown', function (e) {
+    var b = e.target.closest('.ins-pick');
+    if (!b) return;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var el = place(b.dataset.kind, 0.3 + Math.random() * 0.4, 0.3 + Math.random() * 0.4, true);
+      strike(el); save(); el.focus();
+    } else if (e.key === ' ') {
+      e.preventDefault(); play(b.dataset.kind); hit(b);
+    }
+  });
+  stage.addEventListener('keydown', function (e) {
+    var el = e.target.closest('.ins-placed');
+    if (!el) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); strike(el); }
+    else if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); removeEl(el); }
+  });
+
+  window.addEventListener('resize', sizeAll);
+})();
+</script></body>
+</html>
